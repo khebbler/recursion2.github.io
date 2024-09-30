@@ -4,12 +4,66 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
+
 var factorial = function(n) {
+  // base
+  if (n === 0) {
+    return 1;
+  }
+  if (n < 0) {
+    return null;
+  }
+ 
+  // recursion
+  return n * factorial(n - 1);
+
+
 };
+
+/*
+var factorial2 = function(n, output=1) {
+  // base
+  if (n < 0) {
+    return null;
+  }
+  if (n === 1) {
+    return 1; 
+  }
+  if (n === 1) {
+    return output;
+
+  }
+
+  // recursion
+  // how to update default param?
+  output *= n;
+
+  return factorial2(n - 1, output);
+
+}
+
+// invoke factorial(4);
+  // if () // false
+    // return 4 * factorial(3) // master return statement
+
+    // factorial(3)
+      // if () // false
+        // return 3 * factorial(2)
+
+        */
+
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
 var sum = function(array) {
+  // base 
+  if (array.length === 0) {
+    return 0;
+  }
+
+  // recursion
+  // returning the first element + the result of calling sum
+  return array[0] + sum(array.slice(1))
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
@@ -19,6 +73,23 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+
+  // base
+  if (n < 0) {
+    return isEven(-n);
+  }
+
+  if (n === 0) {
+    return true;
+  }
+
+  if (n === 1) {
+    return false;
+  }
+
+
+  // recursion
+  return isEven(n - 2)
 };
 
 // 5. Sum all integers below a given integer.
@@ -29,8 +100,22 @@ var sumBelow = function(n) {
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
-var range = function(x, y) {
+var range = function(x, y, output=[]) {
+  // base
+  if (x === y - 1) {
+    return output;
+
+  }
+
+  // recursion
+  if (x < y) {
+  output.push(x + 1);
+  
+  return range(x + 1, y, output);
+  }
 };
+
+range(3, 6) // [3, 4, 5, 6]
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
