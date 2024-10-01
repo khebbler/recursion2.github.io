@@ -98,12 +98,20 @@ var isEven = function(n) {
 var sumBelow = function(n) {
 
   // base 
-
+  if (n === 0) {
+    return 0;
+  }
 
   // recursion
-  if (n > 0)
-  return (n + 1) + sumBelow(n + 1);
+  // if n is positive
+  if (n > 0) {
+  return (n - 1) + sumBelow(n - 1);
+  }
 
+  // if n is negative
+  if (n < 0) {
+    return (n + 1) + sumBelow(n + 1);
+  }
 
 };
 
@@ -249,7 +257,21 @@ var fibonacci = function(n) {
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
-var nthFibo = function(n) {
+var nthFibo = function(n, fib=[0, 1]) {
+  // base 
+  if (n < 0) {
+    return null;
+  }
+  if (fib.length > n) {
+    return fib[n];
+  }
+  // recursion
+  // add to fib
+  fib.push(fib[fib.length -1] + fib[fib.length - 2]);
+
+  return nthFibo(n, fib);
+
+
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
