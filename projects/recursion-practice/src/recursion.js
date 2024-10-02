@@ -11,7 +11,7 @@ var factorial = function(n) {
     return 1;
   }
   if (n < 0) {
-    return null;
+    return null;  
   }
  
   // recursion
