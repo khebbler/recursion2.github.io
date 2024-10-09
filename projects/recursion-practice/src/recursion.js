@@ -206,8 +206,8 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-  
-
+  // removing spaces and capital letters
+  string = string.toLowerCase().replace(/[^a-z0-9]/g, '');
 
   // base
   if (string.length <= 1) {
@@ -215,10 +215,13 @@ var palindrome = function(string) {
   }
 
   // recursion
+  // if first char and last char are the same
   if (string[0] === string[string.length - 1]) {
-    // 
+    // removing first and last char and calling recursively 
     return palindrome(string.slice(1, -1));
+  // if first and last char are different
   } else {
+    // not a palindrome
     return false;
   }
 
