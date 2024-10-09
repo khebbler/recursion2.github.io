@@ -11,7 +11,7 @@ var factorial = function(n) {
     return 1;
   }
   if (n < 0) {
-    return null;  
+    return null;
   }
  
   // recursion
@@ -154,12 +154,15 @@ var exponent = function(base, exp) {
 
   // recursion
   // if exp is positive
+  // multiply base by iteslf
   if (exp > 0) {
     return base * exponent(base, exp - 1)
   }
-
+  // if exp is negative
+  // making exp positive
+  // returning reciprocal 
   if ( exp < 0) {
-    return base * exponent(base, -exp)
+    return 1 / exponent(base, -exp)
   }
 
 
@@ -203,6 +206,26 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  
+
+
+  // base
+  if (string.length <= 1) {
+    return true;
+  }
+
+  // recursion
+  if (string[0] === string[string.length - 1]) {
+    // 
+    return palindrome(string.slice(1, -1));
+  } else {
+    return false;
+  }
+
+
+  // recursion
+
+
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
