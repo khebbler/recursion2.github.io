@@ -272,28 +272,82 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {
+var compareStr = function(string1, string2) {
+  // base 
+  // if both strings are empty
+  if (string1.length === 0 && string2.length === 0) {
+    return true;
+  }
+  // if first chars are not the same
+  if (string1[0] !== string2[0]) {
+    return false;
+  }
+  // recursion
+  // comparing next chars
+  return compareStr(string1.slice(1), string2.slice(1));
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(string){
+  // base
+  // if string is empty
+  if (string.length === 0) {
+    return [];
+  }
+  // recursion
+  // concat first char with recursive call with rest of string
+  return [string[0]].concat(createArray(string.slice(1)))
 };
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+  // base
+  // if array is empty
+  if (array.length === 0) {
+    return [];
+  }
+
+  //recursion
+  // addind first element to end of array
+  return reverseArr(array.slice(1)).concat(array[0]);
+
+
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  // base
+  // if no value
+  if (length === 0) {
+    return [];
+  }
+
+  // recursion
+  // returning array with first element as the value + rest of array  
+  return [value].concat(buildList(value, length - 1));
+
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  // base
+  if (array.length === 0) {
+    return 0;
+  }
+  // recursion
+  // if first element matches value
+  if (array[0] === value) {
+    // adding 1 to count & calling func on rest of array
+    return 1 + countOccurrence(array.slice(1), value);
+  } else {
+    return countOccurrence(array.slice(1), value);
+  }
+
 };
 
 // 20. Write a recursive version of map.
