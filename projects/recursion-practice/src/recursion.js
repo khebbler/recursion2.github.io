@@ -420,11 +420,29 @@ var nthFibo = function(n, fib=[0, 1]) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
+    // base
+    if (input.length === 0) {
+      return [];
+    }
+    // recursion 
+    // capitalizing first word
+    // recursively calling rest of array
+    return [input[0].toUpperCase()].concat(capitalizeWords(input.slice(1)));
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
+  // base
+  // if array is empty
+  if (array.length === 0) {
+    return [];
+  }
+  // recursion 
+  // capitalizing first letter of first word
+  // 
+  var capitalizedWord = array[0][0].toUpperCase() + array[0].slice(1);
+  return [capitalizedWord].concat(capitalizeFirst(array.slice(1)));
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
@@ -446,7 +464,7 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(string, object) {
+var letterTally = function(string, object = {}) {
     // base
     // if string is empty
     if (string.length === 0) {
@@ -466,6 +484,8 @@ var letterTally = function(string, object) {
   
     // recursion
     return letterTally(string.slice(1), object);
+
+
   };
 
 
@@ -475,6 +495,22 @@ var letterTally = function(string, object) {
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 var compress = function(list) {
+   // base
+  // if list is empty or only has 1 element
+  if (list.length <= 1) {
+    return list;
+  }
+
+  // recursion
+  // if first element is the same as the second
+  if (list[0] === list[1]) {
+    // recursive call 
+    return compress(list.slice(1));
+  } else {
+    return [list[0]].concat(compress(list.slice(1)));
+  }
+
+
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
@@ -487,6 +523,18 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
+    // base 
+  // if array is empty or has 1 element
+  if (array <= 1) {
+    return array;
+  }
+
+  // recursion
+  if (array[0] === 0 && array[1] === 0) {
+    return minimizeZeroes(array.slice(1));
+  } else {
+    return [array[0]].concat(minimizeZeroes(array.slice(1)));
+  }
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
