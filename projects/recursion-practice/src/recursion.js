@@ -527,7 +527,7 @@ var minimizeZeroes = function(array) {
   // if array is empty or has 1 element
   if (array <= 1) {
     return array;
-  }
+  } 
 
   // recursion
   if (array[0] === 0 && array[1] === 0) {
